@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Models (too large for git)
+*.pt
+*.pth
+*.onnx
+*.bin
+!*.md
+
+# Node / Frontend
+node_modules/
+frontend/dist/
+.next/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Office temp files
+~$*
+
+# Extracted pptx
+pptx_temp/

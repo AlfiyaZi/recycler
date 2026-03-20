@@ -1,0 +1,128 @@
+{
+  "Austria": {
+    "categories": {
+      "PET plastic": "recyclable",
+      "HDPE plastic": "recyclable",
+      "glass": "recyclable",
+      "aluminum": "recyclable",
+      "paper": "recyclable",
+      "organic": "compostable",
+      "e-waste": "special disposal",
+      "metal": "recyclable"
+    },
+    "steps": {
+      "PET plastic": [
+        "Empty and rinse the container",
+        "Remove the cap (dispose separately in plastic bin)",
+        "Flatten the bottle to save space",
+        "Place in the Yellow Bin (Gelbe Tonne) or plastic collection bag"
+      ],
+      "glass": [
+        "Empty and rinse the container",
+        "Remove caps and lids (dispose in metal recycling)",
+        "Sort by color: white glass, green glass, brown glass",
+        "Bring to the nearest glass container (Glascontainer)"
+      ],
+      "paper": [
+        "Remove any plastic wrapping or tape",
+        "Flatten cardboard boxes",
+        "Place in the Blue Bin (Altpapiertonne) or bring to paper container"
+      ],
+      "organic": [
+        "Remove any non-organic packaging",
+        "Place in the Brown Bin (Biotonne)",
+        "Compostable items only: food scraps, garden waste, coffee grounds"
+      ],
+      "e-waste": [
+        "Do NOT place in regular bins",
+        "Bring to a municipal collection point (Altstoffsammelzentrum)",
+        "Many electronics stores also accept small e-waste for free"
+      ]
+    },
+    "notes": "Austria uses a color-coded bin system. Deposit-return (Pfand) applies to some bottles."
+  },
+  "Germany": {
+    "categories": {
+      "PET plastic": "recyclable",
+      "HDPE plastic": "recyclable",
+      "glass": "recyclable",
+      "aluminum": "recyclable",
+      "paper": "recyclable",
+      "organic": "compostable",
+      "e-waste": "special disposal",
+      "metal": "recyclable"
+    },
+    "steps": {
+      "PET plastic": [
+        "Check for Pfand deposit symbol — if present, return to a supermarket Pfandautomat",
+        "If no deposit: empty, rinse, and flatten",
+        "Place in the Yellow Bin (Gelbe Tonne) or Yellow Bag (Gelber Sack)"
+      ],
+      "glass": [
+        "Empty and rinse the container",
+        "Sort by color: Weißglas, Grünglas, Braunglas",
+        "Bring to the nearest Glascontainer (not in household bins)",
+        "Note: glass containers have restricted hours in residential areas"
+      ],
+      "paper": [
+        "Remove any plastic windows from envelopes",
+        "Flatten cardboard",
+        "Place in the Blue Bin (Blaue Tonne)"
+      ],
+      "organic": [
+        "Place in the Brown Bin (Braune Tonne / Biotonne)",
+        "Accepted: fruit/vegetable scraps, coffee filters, eggshells, garden waste",
+        "Not accepted: cooked food, meat, dairy (varies by municipality)"
+      ],
+      "e-waste": [
+        "Do NOT place in regular bins — illegal in Germany",
+        "Bring to a municipal recycling center (Wertstoffhof)",
+        "Retailers with >400m² sales area must accept small e-waste",
+        "Batteries: return to any store that sells batteries (collection boxes at entrance)"
+      ]
+    },
+    "notes": "Germany has an extensive Pfand deposit system for bottles and cans. The Duales System manages packaging recycling."
+  },
+  "South Korea": {
+    "categories": {
+      "PET plastic": "recyclable",
+      "HDPE plastic": "recyclable",
+      "glass": "recyclable",
+      "aluminum": "recyclable",
+      "paper": "recyclable",
+      "organic": "compostable",
+      "e-waste": "special disposal",
+      "metal": "recyclable"
+    },
+    "steps": {
+      "PET plastic": [
+        "Remove the label and cap",
+        "Rinse thoroughly — contaminated items will be rejected",
+        "Crush the bottle flat",
+        "Place in the designated plastic recycling area on collection day"
+      ],
+      "glass": [
+        "Rinse the container",
+        "Sort by color if required by your district",
+        "Place in the glass recycling area on collection day"
+      ],
+      "paper": [
+        "Bundle newspapers and magazines with string",
+        "Flatten cardboard boxes",
+        "Place in the paper recycling area on collection day"
+      ],
+      "organic": [
+        "IMPORTANT: You must purchase designated food waste bags (종량제 봉투) from convenience stores or supermarkets",
+        "Bag prices vary by district and volume (typically ₩100-500 per bag)",
+        "Place sealed bags in the food waste bin (음식물 쓰레기통) in your apartment complex or designated area",
+        "Drain excess liquid before bagging"
+      ],
+      "e-waste": [
+        "Call your district office (구청) to arrange large e-waste pickup",
+        "Small electronics can be dropped at community recycling centers",
+        "Some manufacturers offer free pickup for old appliances"
+      ]
+    },
+    "notes": "South Korea requires volume-based waste bags (종량제 봉투) purchased at stores. Recycling must be sorted and put out on specific collection days. Food waste is collected separately and often weighed in apartment complexes."
+  }
+}
