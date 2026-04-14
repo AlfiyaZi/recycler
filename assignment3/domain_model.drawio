@@ -1,0 +1,243 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Domain Model" id="domain-model">
+    <mxGraphModel dx="1422" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="99" value="Domain Model - Recycling Object Detector" style="text;html=1;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="10" width="400" height="30" as="geometry"/>
+        </mxCell>
+        <!-- User -->
+        <mxCell id="10" value="User" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="160" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="10a" value="- preferredLanguage: String&#xa;- locationSetting: Location&#xa;- scanHistory: ScanRecord[]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="10">
+          <mxGeometry y="26" width="160" height="104" as="geometry"/>
+        </mxCell>
+        <!-- WasteItem -->
+        <mxCell id="20" value="WasteItem" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="180" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="20a" value="- name: String&#xa;- boundingBox: Rectangle&#xa;- confidenceScore: Float&#xa;- topClassifications: String[3]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="20">
+          <mxGeometry y="26" width="180" height="94" as="geometry"/>
+        </mxCell>
+        <!-- Material -->
+        <mxCell id="25" value="Material" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="660" y="80" width="170" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="25a" value="- type: MaterialType&#xa;- confidenceScore: Float&#xa;- disposalCategory: Category" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="25">
+          <mxGeometry y="26" width="170" height="84" as="geometry"/>
+        </mxCell>
+        <!-- DisposalCategory (enum) -->
+        <mxCell id="26" value="&lt;&lt;enumeration&gt;&gt;&#xa;DisposalCategory" style="swimlane;fontStyle=1;align=center;startSize=40;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="920" y="70" width="160" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="26a" value="RECYCLABLE&#xa;COMPOSTABLE&#xa;LANDFILL&#xa;SPECIAL_DISPOSAL" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="26">
+          <mxGeometry y="40" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <!-- Image -->
+        <mxCell id="30" value="Image" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="280" width="160" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="30a" value="- fileFormat: String&#xa;- fileSize: Integer&#xa;- resolution: String&#xa;- isValid: Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="30">
+          <mxGeometry y="26" width="160" height="84" as="geometry"/>
+        </mxCell>
+        <!-- YOLO Detection Model (AI - blue) -->
+        <mxCell id="40" value="YOLODetectionModel" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#4472C4;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="630" y="270" width="200" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="40a" value="- modelVersion: String&#xa;- confidenceThreshold: Float&#xa;+ detect(image): WasteItem[]&#xa;+ classifyMaterial(): Material" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="40">
+          <mxGeometry y="26" width="200" height="94" as="geometry"/>
+        </mxCell>
+        <!-- LLM (AI - blue) -->
+        <mxCell id="50" value="LLM" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#4472C4;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="630" y="450" width="200" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="50a" value="- model: String&#xa;+ generateInstructions(): String&#xa;+ answerQuestion(): String&#xa;+ translateResponse(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;" vertex="1" parent="50">
+          <mxGeometry y="26" width="200" height="94" as="geometry"/>
+        </mxCell>
+        <!-- DisposalInstruction -->
+        <mxCell id="55" value="DisposalInstruction" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="350" y="470" width="200" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="55a" value="- steps: String[]&#xa;- environmentalImpact: String&#xa;- aiDisclaimer: String&#xa;- language: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="55">
+          <mxGeometry y="26" width="200" height="104" as="geometry"/>
+        </mxCell>
+        <!-- Location -->
+        <mxCell id="60" value="Location" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="480" width="170" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="60a" value="- country: String&#xa;- region: String&#xa;- gpsCoordinates: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="60">
+          <mxGeometry y="26" width="170" height="94" as="geometry"/>
+        </mxCell>
+        <!-- RecyclingRulesKB -->
+        <mxCell id="65" value="RecyclingRulesKB" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="660" width="180" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="65a" value="- rules: Map&lt;Location, Rule[]&gt;&#xa;+ getRules(location): Rule[]&#xa;+ getSteps(material): String[]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="65">
+          <mxGeometry y="26" width="180" height="84" as="geometry"/>
+        </mxCell>
+        <!-- ScanRecord -->
+        <mxCell id="70" value="ScanRecord" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="180" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="70a" value="- date: DateTime&#xa;- itemName: String&#xa;- material: String&#xa;- disposalCategory: Category&#xa;- location: Location" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="70">
+          <mxGeometry y="26" width="180" height="104" as="geometry"/>
+        </mxCell>
+        <!-- ChatMessage -->
+        <mxCell id="75" value="ChatMessage" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="660" width="170" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="75a" value="- question: String&#xa;- answer: String&#xa;- itemContext: WasteItem" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="75">
+          <mxGeometry y="26" width="170" height="84" as="geometry"/>
+        </mxCell>
+        <!-- RELATIONSHIPS -->
+        <!-- User -uploads-> Image (1 to *) -->
+        <mxCell id="80" value="uploads" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" source="10" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="80a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="225" y="300" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="80b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="365" y="320" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- Image -contains-> WasteItem (1 to *) -->
+        <mxCell id="81" value="contains" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="30" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="81a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="445" y="255" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="81b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="445" y="200" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- WasteItem -has-> Material (1 to 1..*) -->
+        <mxCell id="82" value="has" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="20" target="25" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="82a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="565" y="120" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="82b" value="1..*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="120" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <!-- Material -categorizedAs-> DisposalCategory -->
+        <mxCell id="83" value="categorizedAs" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="25" target="26" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="83a" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="835" y="115" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="83b" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="905" y="115" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- YOLODetectionModel -analyses-> Image -->
+        <mxCell id="84" value="analyses" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="40" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="84a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="620" y="315" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="84b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="545" y="315" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- YOLODetectionModel -identifies-> WasteItem -->
+        <mxCell id="85" value="identifies" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0.3;exitY=0;entryX=1;entryY=0.8;" edge="1" source="40" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="85a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="230" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="85b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="170" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- LLM -generates-> DisposalInstruction -->
+        <mxCell id="86" value="generates" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="50" target="55" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="86a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="625" y="495" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="86b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="555" y="495" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- WasteItem -hasInstruction-> DisposalInstruction -->
+        <mxCell id="87" value="hasInstruction" style="endArrow=open;endSize=12;html=1;fontSize=10;" edge="1" source="20" target="55" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="470"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="87a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="310" y="200" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="87b" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="335" y="450" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- User -hasLocation-> Location -->
+        <mxCell id="88" value="hasLocation" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="10" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="88a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="150" y="420" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="88b" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="150" y="460" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- Location -hasRules-> RecyclingRulesKB -->
+        <mxCell id="89" value="hasRules" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="60" target="65" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="89a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="150" y="610" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="89b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="150" y="645" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- DisposalInstruction -basedOn-> Location -->
+        <mxCell id="90" value="basedOn" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0;exitY=0.8;entryX=1;entryY=0.5;" edge="1" source="55" target="60" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- User -has-> ScanRecord -->
+        <mxCell id="91" value="has" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="10" target="70" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="91a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="125" y="250" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="91b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="125" y="215" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- LLM -answers-> ChatMessage -->
+        <mxCell id="92" value="answers" style="endArrow=open;endSize=12;html=1;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="50" target="75" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="92a" value="1" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="735" y="580" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="92b" value="*" style="text;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="640" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <!-- Legend -->
+        <mxCell id="95" value="Legend:" style="text;html=1;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="660" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="96" value="" style="rounded=0;fillColor=#4472C4;strokeColor=#4472C4;" vertex="1" parent="1">
+          <mxGeometry x="770" y="663" width="25" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="97" value="= AI component" style="text;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="657" width="110" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="98" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="770" y="688" width="25" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="98a" value="= Non-AI component" style="text;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="800" y="682" width="140" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

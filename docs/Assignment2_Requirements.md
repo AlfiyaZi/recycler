@@ -1,13 +1,11 @@
-# Assignment 2 - Requirements Engineering
+# Recycling Object Detector
 
-**Course:** KV Engineering of AI-intensive Systems
-**Project:** Recycling Object Detector
-**Team Members:**
-- Alfiia Ziganshina (AI MSc)
-- Patrik Palenčár (AI)
-- Jonatan Schmidlechner (Computer Science)
+## Assignment 2 - Requirements Engineering
 
----
+**Team members:**
+
+Patrik Palenčár (AI student), Jonatan Schmidlechner (Computer Science student), Alfiia Ziganshina (AI MSc)
+
 
 ## Part 1: Goals of the System
 
@@ -28,7 +26,6 @@
 - G10: Generate human-friendly, location-aware disposal instructions based on the identified item, material, and the user's current country or region
   - **Why AI is needed:** Recycling rules differ drastically between countries (e.g., Austria uses color-coded bins differently than Germany; South Korea requires purchasing designated waste bags). An LLM can combine item context with location-specific recycling knowledge and handle follow-up questions in natural language (e.g., "Where do I buy waste bags in Seoul?" or "What if the bottle still has the label on?").
 
----
 
 ## Part 2: Stakeholders
 
@@ -53,7 +50,6 @@
 - **EU regulatory bodies:** The EU AI Act applies since the system uses AI for classification; it would likely fall under minimal risk category
 - **Data protection authorities (GDPR):** If photos are stored or processed on a server, user data privacy must be ensured
 
----
 
 ## Part 3: Functional Requirements (EARS Template)
 
@@ -77,21 +73,24 @@
 - **Req11:** The Recycling Object Detector shall allow users to ask follow-up questions in natural language about the scanned item (e.g., "Can I recycle this if it is greasy?"). [AI]
 - **Req12:** When a follow-up question is asked, the Recycling Object Detector shall generate a relevant answer based on the identified item context. [AI]
 
+### Live Camera Detection (AI)
+- **Req13:** While the camera is open, the Recycling Object Detector shall continuously process the camera feed to detect and highlight waste items in real time. [AI]
+
 ### Location-Aware Recycling Rules
-- **Req13:** The Recycling Object Detector shall allow users to select their country and region or use GPS-based location detection to determine local recycling rules.
-- **Req14:** When an item is identified, the Recycling Object Detector shall provide disposal instructions specific to the user's selected location (e.g., which bin color to use, whether a deposit-return system applies, or whether special waste bags must be purchased).
-- **Req15:** When the user changes their location, the Recycling Object Detector shall update all disposal instructions to reflect the new region's rules.
+- **Req14:** The Recycling Object Detector shall allow users to select their country and region or use GPS-based location detection to determine local recycling rules.
+- **Req15:** When an item is identified, the Recycling Object Detector shall provide disposal instructions specific to the user's selected location (e.g., which bin color to use, whether a deposit-return system applies, or whether special waste bags must be purchased).
+- **Req16:** When the user changes their location, the Recycling Object Detector shall update all disposal instructions to reflect the new region's rules.
+- **Req17:** If the user's language differs from the location's default language when disposal instructions are generated, the Recycling Object Detector shall display instructions in the user's preferred language. [AI]
 
 ### History and User Features
-- **Req16:** The Recycling Object Detector shall store a history of previously scanned items with their classification results.
-- **Req17:** When the user opens the history, the Recycling Object Detector shall display a list of past scans with item name, category, and date.
+- **Req18:** The Recycling Object Detector shall store a history of previously scanned items with their classification results.
+- **Req19:** When the user opens the history, the Recycling Object Detector shall display a list of past scans with item name, category, and date.
 
 ### Error Handling
-- **Req18:** If the camera is not available, the Recycling Object Detector shall prompt the user to upload an image instead.
-- **Req19:** If the uploaded image does not contain a recognizable object, the Recycling Object Detector shall display a message asking the user to try a different image.
-- **Req20:** If the user's location is not set or cannot be determined, the Recycling Object Detector shall prompt the user to manually select their country and region before providing disposal instructions.
+- **Req20:** If the camera is not available, the Recycling Object Detector shall prompt the user to upload an image instead.
+- **Req21:** If the uploaded image does not contain a recognizable object, the Recycling Object Detector shall display a message asking the user to try a different image.
+- **Req22:** If the user's location is not set or cannot be determined, the Recycling Object Detector shall prompt the user to manually select their country and region before providing disposal instructions.
 
----
 
 ## Part 4: Non-Functional Requirements (EARS Template)
 
@@ -118,7 +117,12 @@
 - **NfReq14:** The Recycling Object Detector shall comply with GDPR requirements for any data processing involving user images. [Constraint]
 - **NfReq15:** The Recycling Object Detector shall use open-source or freely available pre-trained models (e.g., from HuggingFace) to avoid licensing costs. [Constraint]
 
----
+### AI-Specific Quality
+- **NfReq16:** The classification model shall not produce systematically different accuracy rates across waste items from different cultural or regional origins. [Attributes] [AI]
+- **NfReq17:** When displaying results, the Recycling Object Detector shall show the confidence score and the top-3 possible classifications. [Attributes] [AI]
+- **NfReq18:** The Recycling Object Detector shall clearly indicate that classifications are AI-generated and may contain errors. [Attributes] [AI]
+- **NfReq19:** The AI models used shall be open-source, and their training data sources shall be documented. [Constraint] [AI]
+
 
 ## Part 5: AI-Related Requirements
 
@@ -131,7 +135,9 @@
 | Req06 | Multi-item detection | Detect >= 90% of items when 2-5 items are in frame | Users may photograph a pile of items at once. | Use YOLO's built-in multi-object detection with confidence threshold tuning. |
 | Req08 | Disposal category classification | Accuracy >= 85% | Mapping items to disposal categories (recyclable/compostable/landfill/special) is simpler than material identification since there are fewer categories. | Rule-based mapping from material classification to disposal categories, combined with LLM fallback for edge cases. |
 | Req11-12 | Natural language follow-up Q&A | Relevant response in >= 90% of cases | Users expect helpful answers; irrelevant responses erode trust. | Use Ollama to run a local LLM (e.g., Llama 3 or Mistral) with few-shot prompting. Provide item context, user location, and recycling knowledge as prompt context. |
-| Req14 | Location-specific disposal instructions | Correct location-specific advice in >= 85% of supported countries | Incorrect local instructions (e.g., wrong bin color) lead to contamination or fines. Rules differ drastically between countries. | Maintain a structured knowledge base of recycling rules per country/region. Feed location context into the LLM prompt so that disposal instructions are tailored to the user's current location. |
+| Req13 | Real-time camera detection | Detection at >= 10 FPS on mobile device | Users expect smooth real-time feedback when pointing the camera at items. Below 10 FPS feels laggy and unusable. | Use a lightweight YOLO variant (YOLOv8n) optimized for mobile inference. Consider ONNX export for cross-platform performance. |
+| Req15 | Location-specific disposal instructions | Correct location-specific advice in >= 85% of supported countries | Incorrect local instructions (e.g., wrong bin color) lead to contamination or fines. Rules differ drastically between countries. | Maintain a structured knowledge base of recycling rules per country/region. Feed location context into the LLM prompt so that disposal instructions are tailored to the user's current location. |
+| Req17 | Cross-language instruction generation | Correct translation in >= 90% of cases for supported languages | Travelers need instructions in their own language, not the local language. Poor translations lead to confusion. | Use the LLM's multilingual capabilities to generate instructions in the user's preferred language while incorporating location-specific rules. |
 
 ### Non-Functional AI Requirements
 
@@ -140,7 +146,7 @@
 | NfReq04 | Classification in < 3 seconds | **Performance / Safety** | Slow responses make the app unusable in real-time scenarios (e.g., standing at a recycling bin). Using a lightweight model (MobileNet, EfficientNet-Lite) ensures fast inference even on CPU. |
 | NfReq07-08 | Accuracy thresholds (80% / 75%) | **Safety** | Incorrect classification leads to contaminated recycling streams or recyclable items going to landfill. The system should display a confidence score and warn users when confidence is low. |
 | NfReq10 | No PII storage from images | **Security and Privacy** | Photos may contain faces, addresses, or other personal information in the background. Images must be processed ephemerally and never stored without explicit consent. GDPR compliance is mandatory. |
-| - | The classification model shall not produce systematically different accuracy rates across waste items from different cultural or regional origins | **Fairness** | Waste packaging varies significantly across countries and cultures. The training dataset must include diverse packaging from multiple regions to avoid bias toward Western brands only. |
-| - | When displaying results, the Recycling Object Detector shall show the confidence score and the top-3 possible classifications | **Explainability** | Users should understand why the system made a particular classification. Showing alternatives and confidence helps users make informed decisions and builds trust. |
-| - | The Recycling Object Detector shall clearly indicate that classifications are AI-generated and may contain errors | **Transparency and Trust** | Users must know they are interacting with an AI system. A disclaimer prevents over-reliance on potentially incorrect classifications. |
-| - | The AI models used shall be open-source, and their training data sources shall be documented | **Ethics, Regulation, Organizational Culture** | Using open-source models ensures reproducibility and auditability. Documenting training data sources is good practice under the EU AI Act and supports academic integrity. |
+| NfReq16 | The classification model shall not produce systematically different accuracy rates across waste items from different cultural or regional origins | **Fairness** | Waste packaging varies significantly across countries and cultures. The training dataset must include diverse packaging from multiple regions to avoid bias toward Western brands only. |
+| NfReq17 | When displaying results, the Recycling Object Detector shall show the confidence score and the top-3 possible classifications | **Explainability** | Users should understand why the system made a particular classification. Showing alternatives and confidence helps users make informed decisions and builds trust. |
+| NfReq18 | The Recycling Object Detector shall clearly indicate that classifications are AI-generated and may contain errors | **Transparency and Trust** | Users must know they are interacting with an AI system. A disclaimer prevents over-reliance on potentially incorrect classifications. |
+| NfReq19 | The AI models used shall be open-source, and their training data sources shall be documented | **Ethics, Regulation, Organizational Culture** | Using open-source models ensures reproducibility and auditability. Documenting training data sources is good practice under the EU AI Act and supports academic integrity. |
