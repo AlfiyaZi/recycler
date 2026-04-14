@@ -53,6 +53,50 @@ Each UC has: 1 main success scenario + at least 1 alternative + at least 1 excep
 
 All 22 functional requirements (Req01-Req22) and 19 non-functional requirements (NfReq01-NfReq19) from Assignment 2 are mapped to at least one UC. All UCs (including supporting) are traced to at least one requirement.
 
+| | UC1 | UC2 | UC3 | UC4 | UC5 | SUC1 | SUC2 | SUC3 | SUC4 | SUC5 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Req01** | ✓ | | | | | | | | | |
+| **Req02** | ✓ | | | | | | | | | |
+| **Req03** | ✓ | | | | | | | | | |
+| **Req04** | ✓ | | | | | ✓ | | | | |
+| **Req05** | ✓ | | | | | | ✓ | | | |
+| **Req06** | ✓ | | | | | ✓ | | | | |
+| **Req07** | ✓ | | | | | ✓ | | | | |
+| **Req08** | | ✓ | | | | | | | | |
+| **Req09** | | ✓ | | | | | | | | |
+| **Req10** | | ✓ | | | | | | | | |
+| **Req11** | | | ✓ | | | | | | | |
+| **Req12** | | | ✓ | | | | | ✓ | | |
+| **Req13** | ✓ | | | | | | | | | |
+| **Req14** | | | | | ✓ | | | | ✓ | |
+| **Req15** | | ✓ | | | | | | | | |
+| **Req16** | | | | | ✓ | | | | | |
+| **Req17** | | ✓ | | | | | | ✓ | | |
+| **Req18** | | | | ✓ | | | | | | |
+| **Req19** | | | | ✓ | | | | | | |
+| **Req20** | ✓ | | | | | | | | | |
+| **Req21** | ✓ | | | | | | | | | ✓ |
+| **Req22** | | | | | ✓ | | | | ✓ | |
+| **NfReq01** | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | |
+| **NfReq02** | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | |
+| **NfReq03** | ✓ | | | | | | | | | |
+| **NfReq04** | ✓ | | | | | ✓ | ✓ | | | |
+| **NfReq05** | | | ✓ | | | | | ✓ | | |
+| **NfReq06** | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | |
+| **NfReq07** | ✓ | | | | | ✓ | | | | |
+| **NfReq08** | | | | | | | ✓ | | | |
+| **NfReq09** | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | |
+| **NfReq10** | ✓ | | | | | | | | | ✓ |
+| **NfReq11** | ✓ | ✓ | ✓ | ✓ | ✓ | | | | | |
+| **NfReq12** | ✓ | ✓ | ✓ | | | | | | | |
+| **NfReq13** | | | | | | ✓ | ✓ | ✓ | | |
+| **NfReq14** | ✓ | | | ✓ | | | | | | |
+| **NfReq15** | | | | | | ✓ | ✓ | ✓ | | |
+| **NfReq16** | | | | | | ✓ | ✓ | | | |
+| **NfReq17** | ✓ | | | | | ✓ | | | | |
+| **NfReq18** | ✓ | ✓ | ✓ | | | | | | | |
+| **NfReq19** | | | | | | ✓ | ✓ | ✓ | | |
+
 ## Part 3: Use Case Diagram
 
 - All UCs and actors shown
